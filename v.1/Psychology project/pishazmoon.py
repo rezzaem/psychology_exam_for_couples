@@ -1,7 +1,9 @@
 
 from os import path
 import random
-import arabic_reshaper
+import arabic_reshaper 
+#pip install arabic-reshaper
+#pip install python-bidi
 from bidi.algorithm import get_display
 from tkinter import *
 from tkinter import messagebox
