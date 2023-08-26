@@ -72,8 +72,7 @@ def shoro():
 
 
         bc800(root)
-        def GButton_944_command():
-            exit()
+
 
 
         def on_closing():
@@ -186,7 +185,6 @@ for reza in square :
         root=Tk()
         root.title('psycho test')
         
-        
         width=1000
         height=600
         screenwidth = root.winfo_screenwidth()
@@ -259,7 +257,7 @@ for reza in square :
                     def on_closing():
                         exit()
 
-                    root.protocol("WM_DELETE_WINDOW", on_closing)
+                    new_window.protocol("WM_DELETE_WINDOW", on_closing)
 
 
 
@@ -360,8 +358,6 @@ for reza in square :
 
 
 
-    def GButton_944_command():
-        exit()
     
     def on_closing():
         exit()
@@ -532,8 +528,7 @@ for reza in square :
         bg_label=Label(root,image=bg)
         bg_label.place(x=0,y=0)
 
-        def GButton_944_command():
-            exit()
+        
         
         def on_closing():
             exit()
