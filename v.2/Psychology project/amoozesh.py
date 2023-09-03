@@ -245,6 +245,43 @@ for reza in final_list :
         del sc_temp
     #-------------------------
     for i in range (0,len(list_of_sen)):  #show  main sentenses and simple question of each one
+        # make window to sghow just title at first
+        root2=Tk()
+        root2.title('psycho test')
+        
+        width=1000
+        height=600
+        screenwidth = root2.winfo_screenwidth()
+        screenheight = root2.winfo_screenheight()
+        alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
+        root2.geometry(alignstr)
+        root2.resizable(width=False, height=False)
+        bg=PhotoImage(file="../Psychology project/bak/bc1-1000.600.png")
+        bg_label=Label(root2,image=bg)
+        bg_label.place(x=0,y=0)
+
+        yellow_roban=Label(root2)
+        yellow_roban["bg"] = "#fad400"
+        yellow_roban["fg"] = "#333333"
+        yellow_roban["justify"] = "center"
+        yellow_roban["text"] = ""
+        yellow_roban.place(x=0,y=20,width=1000,height=30)
+
+        lbl1=Label(root2,text="عنوان سناریو: "+list_of_sen[i].name,width=50, 
+                bg="#dcdcdc",
+                justify="center",
+                relief="raised",
+                font=("ariel", 18))
+        lbl1.place(x=350,y=200,width=340,height=63)
+
+        
+    
+        #schadule for close after 3 second 
+        root2.after(3000,root2.destroy)
+        root2.mainloop()
+
+
+
         root=Tk()
         root.title('psycho test')
         

@@ -10,7 +10,7 @@ from tkinter import messagebox
 import json
 from sys import exit
 from collections import OrderedDict 
-
+import time
 #-------------------------
 def bc800(root):
     bg=PhotoImage(file="../Psychology project/bak/bc1-800.500.png")
@@ -167,21 +167,58 @@ def shoro():
 #-------------------------
 shoro1=shoro()
 #----------------------
-square=[[1, 5, 9, 11, 15], [19, 21, 25, 29, 31], [35, 39, 41, 45, 49], [51, 55, 59, 61, 65], [69, 71, 75, 79, 85]]
+scenario_packs=[[1, 5, 9, 11, 15], [19, 21, 25, 29, 31], [35, 39, 41, 45, 49], [51, 55, 59, 61, 65], [69, 71, 75, 79, 85]]
 
 final_data=dict()
 
-for reza in square :
+for pack in scenario_packs :
 
     list_of_sen=list()
-    for i in reza:
-        sc_temp=sce("scenario"+str(i)+".txt","scenario"+str(i))
+    for sen_num in pack:
+        sc_temp=sce("scenario"+str(sen_num)+".txt","scenario"+str(sen_num))
         list_of_sen.append(sc_temp)
         del sc_temp;
 
     #-----------------------------
 
-    for i in range (0,len(list_of_sen)):  #show  main sentenses and simple question of each one
+    for sen_num in range (0,len(list_of_sen)):  #show  main sentenses and simple question of each one
+
+        # make window to sghow just title at first
+        root2=Tk()
+        root2.title('psycho test')
+        
+        width=1000
+        height=600
+        screenwidth = root2.winfo_screenwidth()
+        screenheight = root2.winfo_screenheight()
+        alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
+        root2.geometry(alignstr)
+        root2.resizable(width=False, height=False)
+        bg=PhotoImage(file="../Psychology project/bak/bc1-1000.600.png")
+        bg_label=Label(root2,image=bg)
+        bg_label.place(x=0,y=0)
+
+        yellow_roban=Label(root2)
+        yellow_roban["bg"] = "#fad400"
+        yellow_roban["fg"] = "#333333"
+        yellow_roban["justify"] = "center"
+        yellow_roban["text"] = ""
+        yellow_roban.place(x=0,y=20,width=1000,height=30)
+
+        lbl1=Label(root2,text="عنوان سناریو: "+list_of_sen[sen_num].name,width=50, 
+                bg="#dcdcdc",
+                justify="center",
+                relief="raised",
+                font=("ariel", 18))
+        lbl1.place(x=350,y=200,width=340,height=63)
+
+        
+    
+        #schadule for close after 3 second 
+        root2.after(3000,root2.destroy)
+        root2.mainloop()
+
+        #make main window
         root=Tk()
         root.title('psycho test')
         
@@ -206,23 +243,25 @@ for reza in square :
 
         
 
-        GLabel_747=Label(root)
-        GLabel_747["bg"] = "#fad400"
-        GLabel_747["fg"] = "#333333"
-        GLabel_747["justify"] = "center"
-        GLabel_747["text"] = ""
-        GLabel_747.place(x=0,y=20,width=1000,height=30)
+        yellow_roban=Label(root)
+        yellow_roban["bg"] = "#fad400"
+        yellow_roban["fg"] = "#333333"
+        yellow_roban["justify"] = "center"
+        yellow_roban["text"] = ""
+        yellow_roban.place(x=0,y=20,width=1000,height=30)
 
-        lbl1=Label(root,text="عنوان سناریو: "+list_of_sen[i].name,width=50, 
+        
+        lbl1=Label(root,text="عنوان سناریو: "+list_of_sen[sen_num].name,width=50, 
                 bg="#dcdcdc",
                 justify="center",
                 relief="raised",
                 font=("ariel", 18))
         lbl1.place(x=350,y=100,width=340,height=63)
+        
 
         a=0
-        sc=list_of_sen[i].text_list
-        sq=list_of_sen[i].simp_question
+        sc=list_of_sen[sen_num].text_list
+        sq=list_of_sen[sen_num].simp_question
         lbl2=Label(root,
         text="",
         relief="solid",
@@ -262,14 +301,14 @@ for reza in square :
 
 
 
-                    GLabel_747=Label(new_window)
-                    GLabel_747["bg"] = "#fad400"
-                    GLabel_747["fg"] = "#333333"
-                    GLabel_747["justify"] = "center"
-                    GLabel_747["text"] = ""
-                    GLabel_747.place(x=0,y=20,width=1000,height=30)
+                    yellow_roban=Label(new_window)
+                    yellow_roban["bg"] = "#fad400"
+                    yellow_roban["fg"] = "#333333"
+                    yellow_roban["justify"] = "center"
+                    yellow_roban["text"] = ""
+                    yellow_roban.place(x=0,y=20,width=1000,height=30)
 
-                    lbl1=Label(new_window,text="عنوان سناریو : "+list_of_sen[i].name,
+                    lbl1=Label(new_window,text="عنوان سناریو : "+list_of_sen[sen_num].name,
                     bg = "#dcdcdc",
                     relief="raised",
                     justify = "center",
@@ -499,9 +538,9 @@ for reza in square :
         # a_q_list.append(main_q_list)
 
 
-        for i in main_q_list:
-            Questions.append(i[0])
-            Ansewers.append(i[1])
+        for sen_num in main_q_list:
+            Questions.append(sen_num[0])
+            Ansewers.append(sen_num[1])
         Options=["بسیار مشابه","نسبتا مشابه","نسبتا متفاوت","بسیار متفاوت"]
 
 
@@ -537,12 +576,12 @@ for reza in square :
 
 
 
-        GLabel_747=Label(root)
-        GLabel_747["bg"] = "#fad400"
-        GLabel_747["fg"] = "#333333"
-        GLabel_747["justify"] = "center"
-        GLabel_747["text"] = ""
-        GLabel_747.place(x=0,y=20,width=1000,height=30)
+        yellow_roban=Label(root)
+        yellow_roban["bg"] = "#fad400"
+        yellow_roban["fg"] = "#333333"
+        yellow_roban["justify"] = "center"
+        yellow_roban["text"] = ""
+        yellow_roban.place(x=0,y=20,width=1000,height=30)
 
         sub=Label(root,
         bg = "#dcdcdc",
