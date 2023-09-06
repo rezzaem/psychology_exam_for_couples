@@ -51,7 +51,7 @@ class sce:    #class that get the scenario from the file  + with the loop
                 a+=1
             elif a==3: # for the first question of the questions target
                 line=line.split(":")
-                self.main_question[line[0]]=[line[1],line[2]]
+                self.main_question[line[0]]=line[1]
                      
         file.close()
     def __del__(self):
@@ -544,7 +544,7 @@ for pack in scenario_packs :
         for sen_num in main_q_list:
             Questions.append(sen_num[0])
             Ansewers.append(sen_num[1])
-        # Options=["بسیار مشابه","نسبتا مشابه","نسبتا متفاوت","بسیار متفاوت"]
+        Options=["بسیار مشابه","نسبتا مشابه","نسبتا متفاوت","بسیار متفاوت"]
 
 
         Total_No_Questions=len(Questions)
