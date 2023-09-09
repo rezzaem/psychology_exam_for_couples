@@ -275,7 +275,7 @@ for pack in scenario_packs :
             if a<len(sc):
                 lbl2.configure(text=sc[a])
                 a+=1
-                root.after(1000,move) # time of each scense 
+                root.after(10,move) # time of each scense 
             elif a==len(sc):
 
                 def create_window():
@@ -519,7 +519,21 @@ for pack in scenario_packs :
         return [(key,dic[key]) for key in keys]
 
     def next_2(selected_item):
-        pass
+        global Question_no,sum_q_point
+        if selected_item=='+':
+            sum_q_point+=int(Ansewers[Question_no-1][1])
+        elif selected_item=='-':
+            sum_q_point+=int(Ansewers[Question_no-1][0])
+        Question_no+=1
+        if Question_no>Total_No_Questions:
+            main_data[def_name]=str(sum_q_point)
+            sum_q_point=0
+            win.destroy()
+        else:
+            question.config(text=Questions[Question_no-1])
+        
+
+
 
     #---------------------------------------------------------    
     p_a_list=dict() 
@@ -535,8 +549,9 @@ for pack in scenario_packs :
         def_name=list_of_sen[a].def_name
         Questions=list() #list of questions
         Ansewers=list()
-        a_first=""
-        d_last=""
+        a_first="" #remove
+        d_last="" #remove
+        sum_q_point=0
         main_q_list=ran_dic(list_of_sen[a].main_question)
         # a_q_list.append(main_q_list)
 
@@ -604,14 +619,14 @@ for pack in scenario_packs :
         #----------------
 
         btn_positive=Button(root,
-                            text="تناسب دارد",
+                            text="تناسب ندارد",
                             bg="#dcdcdc",
                             font=('arial',17),
                             justify="center",
                             relief="raised",
-                            command=next_2("+")
+                            command=lambda :next_2("-")
                             )
-        btn_positive.place(x=580,y=390,width=160,height=60)
+        btn_positive.place(x=290,y=390,width=160,height=60)
 
         btn_positive=Button(root,
                             text="تناسب دارد",
@@ -619,7 +634,7 @@ for pack in scenario_packs :
                             font=('arial',17),
                             justify="center",
                             relief="raised",
-                            command=next_2("+")
+                            command=lambda :next_2("+")
                             )
         btn_positive.place(x=580,y=390,width=160,height=60)
         val1=IntVar()
@@ -674,10 +689,13 @@ for pack in scenario_packs :
     #--------------------------------
     if shoro1['id']=="" or shoro1['id']==None:
         False
+        messagebox.showinfo("خطا","آیدی تنظیم نبود،فایل سیو نشد")
     elif shoro1['name']=="" or shoro1['name']==None:
         False
+        messagebox.showinfo("خطا","نام تنظیم نبود ، فایل سیو نشد")
     elif len(main_data) <len(list_of_sen):
         False
+        messagebox.showinfo("خطا","لیست سناریو ها تنظیم نبود از نظر تعدادی ، فایل سیو نشد")
     else:    
         final_data.update(main_data)
 #---------------------------------
