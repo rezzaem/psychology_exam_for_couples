@@ -427,91 +427,74 @@ for pack in scenario_packs :
     root.mainloop()
     #-----------------------------------------------------                        ui check
 
-    def check(option):
-        if(option==1):
-            val2.set(0)
-            val3.set(0)
-            val4.set(0)
-        elif(option==2):
-            val1.set(0)
-            val3.set(0)
-            val4.set(0)
-        elif(option==3): 
-            val1.set(0)
-            val2.set(0)
-            val4.set(0)
-        elif(option==4):
-            val1.set(0)
-            val2.set(0)
-            val3.set(0)
+    
 
-
-    def next():
-        global Question_no,a_first,d_last
-        cont=False
-        if Ansewers[Question_no-1]=='a':
-            if val1.get()==1:
-                a_first='3'
-                cont=True
-            elif val2.get()==1:
-                a_first='2'
-                cont=True
-            elif val3.get()==1:
-                a_first='1'
-                cont=True
-            elif val4.get()==1:
-                a_first='0'
-                cont=True
+    # def next():
+    #     global Question_no,a_first,d_last
+    #     cont=False
+    #     if Ansewers[Question_no-1]=='a':
+    #         if val1.get()==1:
+    #             a_first='3'
+    #             cont=True
+    #         elif val2.get()==1:
+    #             a_first='2'
+    #             cont=True
+    #         elif val3.get()==1:
+    #             a_first='1'
+    #             cont=True
+    #         elif val4.get()==1:
+    #             a_first='0'
+    #             cont=True
                 
-            # main_data[def_name]:"a"+selected_option    
-        elif   Ansewers[Question_no-1]=='d':
-                if val1.get()==1:
-                    d_last='0'
-                    cont=True
-                elif val2.get()==1:
-                    d_last='1'
-                    cont=True
-                elif val3.get()==1:
-                    d_last='2'
-                    cont=True
-                elif val4.get()==1:
-                    d_last='3'
-                    cont=True
-        else:
-            if val1.get()==1:
-                tmp='0'
-                cont=True
-            elif val2.get()==1:
-                tmp='1'
-                cont=True
-            elif val3.get()==1:
-                tmp='2'
-                cont=True
-            elif val4.get()==1:
-                tmp='3'
-                cont=True
+    #         # main_data[def_name]:"a"+selected_option    
+    #     elif   Ansewers[Question_no-1]=='d':
+    #             if val1.get()==1:
+    #                 d_last='0'
+    #                 cont=True
+    #             elif val2.get()==1:
+    #                 d_last='1'
+    #                 cont=True
+    #             elif val3.get()==1:
+    #                 d_last='2'
+    #                 cont=True
+    #             elif val4.get()==1:
+    #                 d_last='3'
+    #                 cont=True
+    #     else:
+    #         if val1.get()==1:
+    #             tmp='0'
+    #             cont=True
+    #         elif val2.get()==1:
+    #             tmp='1'
+    #             cont=True
+    #         elif val3.get()==1:
+    #             tmp='2'
+    #             cont=True
+    #         elif val4.get()==1:
+    #             tmp='3'
+    #             cont=True
 
 
-        Question_no+=1
-        if cont==False:
-            messagebox.showinfo("خطا","لطفا یک گزینه را انتخاب کنید")
-            Question_no-=1
-            return
-        elif Question_no>Total_No_Questions:
-            main_data[def_name]="a"+a_first+"/"+"d"+d_last
-            if len(main_data[def_name]) != 5:
-                if main_data[def_name][1]=='/':
-                    main_data[def_name]=main_data[def_name][:1]+'1'+'/'+main_data[def_name][2:]
-                elif main_data[def_name][-1]=='d':
-                    main_data[def_name]=main_data[def_name]+'1'
+    #     Question_no+=1
+    #     if cont==False:
+    #         messagebox.showinfo("خطا","لطفا یک گزینه را انتخاب کنید")
+    #         Question_no-=1
+    #         return
+    #     elif Question_no>Total_No_Questions:
+    #         main_data[def_name]="a"+a_first+"/"+"d"+d_last
+    #         if len(main_data[def_name]) != 5:
+    #             if main_data[def_name][1]=='/':
+    #                 main_data[def_name]=main_data[def_name][:1]+'1'+'/'+main_data[def_name][2:]
+    #             elif main_data[def_name][-1]=='d':
+    #                 main_data[def_name]=main_data[def_name]+'1'
 
-            win.destroy()
-        else :
-            val1.set(0)
-            val2.set(0)
-            val3.set(0)
-            val4.set(0)
-            question.config(text=Questions[Question_no-1])         
+    #         win.destroy()
+    #     else :
+    #         val1.set(0)
+    #         val2.set(0)
+    #         val3.set(0)
+    #         val4.set(0)
+    #         question.config(text=Questions[Question_no-1])         
         
     def ran_dic(dic):
         keys=list(dic.keys())
@@ -519,7 +502,7 @@ for pack in scenario_packs :
         return [(key,dic[key]) for key in keys]
 
     def next_2(selected_item):
-        global Question_no,sum_q_point
+        global Question_no,sum_q_point,sum_q_point
         if selected_item=='+':
             sum_q_point+=int(Ansewers[Question_no-1][1])
         elif selected_item=='-':
@@ -538,7 +521,6 @@ for pack in scenario_packs :
     #---------------------------------------------------------    
     p_a_list=dict() 
     a_q_list=list() 
-    score=0
     main_data=dict()
     random.shuffle(list_of_sen)
     #----------------------------------------------------------
@@ -549,17 +531,13 @@ for pack in scenario_packs :
         def_name=list_of_sen[a].def_name
         Questions=list() #list of questions
         Ansewers=list()
-        a_first="" #remove
-        d_last="" #remove
         sum_q_point=0
         main_q_list=ran_dic(list_of_sen[a].main_question)
-        # a_q_list.append(main_q_list)
-
+        
 
         for sen_num in main_q_list:
             Questions.append(sen_num[0])
             Ansewers.append(sen_num[1])
-        # Options=["بسیار مشابه","نسبتا مشابه","نسبتا متفاوت","بسیار متفاوت"]
 
 
         Total_No_Questions=len(Questions)
@@ -637,53 +615,9 @@ for pack in scenario_packs :
                             command=lambda :next_2("+")
                             )
         btn_positive.place(x=580,y=390,width=160,height=60)
-        val1=IntVar()
-        val2=IntVar()
-        val3=IntVar()
-        val4=IntVar()
 
-        # option1=Checkbutton(root,text=Options[0],variable=val1,
-        # bg = "#dcdcdc",
-        # font=('arial',17),
+
         
-        # justify = "center",
-        # relief = "raised",
-        # command=lambda:check(1))
-        # option1.place(x=440,y=300,width=130,height=30)
-
-        # option2=Checkbutton(root,text=Options[1],variable=val2,
-        # bg = "#dcdcdc",
-        # font=('arial',17),
-        # justify = "center",
-        # relief = "raised",
-        # command=lambda:check(2))
-        # option2.place (x=440,y=350,width=130,height=30)
-
-        # option3=Checkbutton(root,text=Options[2],variable=val3,
-        # bg = "#dcdcdc",
-        # font=('arial',17),
-        # justify = "center",
-        # relief = "raised",
-        # command=lambda:check(3))
-        # option3.place(x=440,y=400,width=130,height=30)
-
-        # option4=Checkbutton(root,text=Options[3],variable=val4,
-        # bg = "#dcdcdc",
-        # font=('arial',17),
-        # justify = "center",
-        # relief = "raised",
-        # command=lambda:check(4))
-        # option4.place(x=440,y=450,width=130,height=30)
-        
-        # next_b=Button(root,text='ادامه',
-        # activeforeground = "#ffffff",
-        # bg = "#fad400",
-        # font=('Times',18),
-        # fg = "#000000",
-        # justify = "center",
-        # relief = "raised",
-        # command=next)
-        # next_b.place(x=430,y=510,width=145,height=37)
 
         win.mainloop()
     #--------------------------------
@@ -697,7 +631,7 @@ for pack in scenario_packs :
         False
         messagebox.showinfo("خطا","لیست سناریو ها تنظیم نبود از نظر تعدادی ، فایل سیو نشد")
     else:    
-        final_data.update(main_data)
+        final_data.update(main_data) #update the dictionary with the new data
 #---------------------------------
 
 data_folder="../Psychology project/data/"

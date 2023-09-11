@@ -259,35 +259,32 @@ class App:
             self.id_data["text"]="None"
         #---------
         try:
-            temp1=data["client"][self.number]["pish"]
-            temp2=list(temp1.values())
+            tmp=data["client"][self.number]["pish"]
+            tmp=list(tmp.values())
+            tmp=[int(item) for item in tmp]
+            points_sum=sum(tmp)
         except:
-            temp2=[]
-        temp_math=0
-        for i in temp2:
-            try :
-                temp_math+=int(i[1])+int(i[4])
-            except:
-                temp_math+=2
+            tmp=[]
+            points_sum=0
         #--------
         try:
-            self.pish_data["text"] = str(temp_math)+"/75"
+            self.pish_data["text"] = str(points_sum)+"/300"
         except:
-            self.pish_data["text"]="None/75"
+            self.pish_data["text"]="None/300"
         #---------
         try:
-            temp1=data["client"][self.number]["pas"]
-            temp2=list(temp1.values())
+            tmp=data["client"][self.number]["pas"]
+            tmp=list(tmp.values())
+            tmp=[int(item) for item in tmp]
+            points_sum=sum(tmp)
         except:
-            temp2=[]
-        temp_math=0
-        for i in temp2:
-            temp_math+=int(i[1])+int(i[4])
+            tmp=[]
+            points_sum=0
         #--------
         try:
-            self.pas_data["text"] = str(temp_math)+"/75"
+            self.pas_data["text"] = str(points_sum)+"/300"
         except:
-            self.pas_data["text"] = "Non/75"
+            self.pas_data["text"] = "Non/300"
         try:
             self.j1_data["text"] = data["client"][self.number]["a1"]
         except:
