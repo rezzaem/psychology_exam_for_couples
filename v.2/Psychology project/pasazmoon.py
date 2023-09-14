@@ -246,7 +246,7 @@ for pack in sen_packs:
             if a<len(sc):
                 lbl2.configure(text=sc[a])
                 a+=1
-                root.after(1,move) # time of each scense
+                root.after(3000,move) # time of each scense
             elif a==len(sc):
 
                 def create_window():
