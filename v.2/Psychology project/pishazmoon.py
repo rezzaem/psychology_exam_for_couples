@@ -11,6 +11,8 @@ import json
 from sys import exit
 from collections import OrderedDict 
 import time
+#ui
+from signup_interface import SignupInterface
 #-------------------------
 def bc800(root):
     bg=PhotoImage(file="../Psychology project/bak/bc1-800.500.png")
@@ -60,74 +62,15 @@ class sce:    #class that get the scenario from the file  + with the loop
 
 
 def shoro():
-        root=Tk()
-        width=800
-        height=500
-        screenwidth = root.winfo_screenwidth()
-        screenheight = root.winfo_screenheight()
-        alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
-        root.geometry(alignstr)
-        root.resizable(width=False, height=False)
-        root.title("شروع")
 
-
-        bc800(root)
-
-
-
-        def on_closing():
-            exit()
-
-        root.protocol("WM_DELETE_WINDOW", on_closing)
-
-        GLabel_7400=Label(root)
-        GLabel_7400["bg"] = "#fad400"
-        GLabel_7400["fg"] = "#333333"
-        GLabel_7400["justify"] = "center"
-        GLabel_7400["text"] = ""
-        GLabel_7400.place(x=0,y=20,width=801,height=30)
-
-        # lbl1=Label(root,text="جهت شروع ابتدا نام و آیدی مد نظر خود را وارد کرده و سپس روی دکمه زیر کلیک کنید",font=("B Nazanin",15,),bg="#00babd")
-        # lbl1.place(x=150,y=150)
-        GLabel_944=Label(root,font=("Times",15))
-        GLabel_944["bg"] = "#dcdcdc"
         
-        GLabel_944["justify"] = "center"
-        GLabel_944["text"] = "جهت شروع ابتدا نام و آیدی مد نظر خود را وارد کرده و سپس روی دکمه شروع کلیک کنید"
-        GLabel_944.place(x=10,y=100,width=775,height=37)
+        signup_interface=SignupInterface()
+        signup_interface.button.configure(command=lambda:insert(signup_interface.entry_1.get(),signup_interface.entry_2.get()))
 
-        GLabel_584=Label(root,font=("Times",13))
-        GLabel_584["fg"] = "#333333"
-        GLabel_584["justify"] = "center"
-        GLabel_584["text"] = " : نام "
-        GLabel_584.place(x=370,y=190,width=70,height=25)
-
-        ins_name=Entry(root,font=("Times",12))
-        ins_name["bg"] = "#ffffff"
-        ins_name["borderwidth"] = "1px"
-        ins_name["fg"] = "#333333"
-        ins_name["justify"] = "center"
-        ins_name.place(x=200,y=220,width=411,height=37)
-        
-
-        GLabel_33=Label(root,font=("Times",13))
-        GLabel_33["fg"] = "#333333"
-        GLabel_33["justify"] = "center"
-        GLabel_33["text"] = " : آیدی  "
-        GLabel_33.place(x=370,y=300,width=70,height=25)
-
-        ins_id=Entry(root,font=("Times",12))
-        ins_id["bg"] = "#ffffff"
-        ins_id["borderwidth"] = "1px"
-        ins_id["fg"] = "#333333"
-        ins_id["justify"] = "center"
-        ins_id.place(x=200,y=330,width=410,height=40)
-        
         data1=dict()
 
-        def insert():
-            client_name=ins_name.get()
-            client_id=ins_id.get()
+        def insert(client_name,client_id):
+
             next_page=True
 
             data_folder="../Psychology project/data/"
@@ -139,7 +82,7 @@ def shoro():
                 if id_check["id"]==client_id or id_check["name"]==client_name:
                     messagebox.showinfo("خطا","آیدی و یا نام وارد شده تکراری است")
                     next_page=False
-                    break;
+                    break
 
             if client_name=="" or client_id=="":
                 messagebox.showinfo("خطا","لطفا نام و آیدی خود را وارد کنید")
@@ -149,19 +92,10 @@ def shoro():
                 
                 data1["name"]=client_name.lower()
                 data1["id"]=client_id
-                root.destroy()
+                signup_interface.window.destroy()
                 
+        signup_interface.run()
 
-        GButton_281=Button(root,font=("Times",18),command=insert)
-        GButton_281["activeforeground"] = "#ffffff"
-        GButton_281["bg"] = "#fad400"
-        GButton_281["fg"] = "#000000"
-        GButton_281["justify"] = "center"
-        GButton_281["text"] = "شروع"
-        GButton_281["relief"] = "raised"
-        GButton_281.place(x=340,y=410,width=125,height=37)
-
-        root.mainloop()
         return data1
 
 #-------------------------
