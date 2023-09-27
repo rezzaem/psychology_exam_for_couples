@@ -8,6 +8,9 @@ from tkinter import messagebox
 import json
 from collections import OrderedDict #--?
 from sys import exit
+# interface
+from login_interface import Logininterface
+from question_interface import yesnoquestion
 #-------------------------
 class sce:    #class that get the scenario from the file
 
@@ -44,57 +47,13 @@ class sce:    #class that get the scenario from the file
         print('ok')
 #------------------------
 def shoro():
-        vorod_dasti=False
-        root=Tk()
-        width=800
-        height=500
-        screenwidth = root.winfo_screenwidth()
-        screenheight = root.winfo_screenheight()
-        alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
-        root.geometry(alignstr)
-        root.resizable(width=False, height=False)
-        root.title("شروع")
 
-        def on_closing():
-            exit()
-
-        root.protocol("WM_DELETE_WINDOW", on_closing)
-
-        GLabel_7400=Label(root)
-        GLabel_7400["bg"] = "#fad400"
-        GLabel_7400["fg"] = "#333333"
-        GLabel_7400["justify"] = "center"
-        GLabel_7400["text"] = ""
-        GLabel_7400.place(x=0,y=20,width=801,height=30)
-
-
-        GLabel_944=Label(root,font=("Times",15))
-        GLabel_944["bg"] = "#dcdcdc"
-
-        GLabel_944["justify"] = "center"
-        GLabel_944["text"] = "جهت شروع ابتداآیدی خود را که در گذاشته وارد کرده بودید مجددا وارد کنید و سپس روی دکمه شروع کلیک کنید"
-        GLabel_944.place(x=10,y=100,width=775,height=37)
-
-        
-
-        GLabel_33=Label(root,font=("Times",13))
-        GLabel_33["fg"] = "#333333"
-        GLabel_33["justify"] = "center"
-        GLabel_33["text"] = " : آیدی  "
-        GLabel_33.place(x=360,y=220,width=70,height=25)
-
-        ins_id=Entry(root,font=("Times",12))
-        ins_id["bg"] = "#ffffff"
-        ins_id["borderwidth"] = "1px"
-        ins_id["fg"] = "#333333"
-        ins_id["justify"] = "center"
-        ins_id.place(x=190,y=270,width=410,height=40)
-        #-------------------------
-        
+        login_interface=Logininterface()
+        login_interface.button_1.configure(command=lambda:insert(login_interface.entry_1.get()))
         data1=dict()
 
-        def insert():
-            client_id=ins_id.get()
+        def insert(client_id):
+
             next_page=True
 
             data_folder="../Psychology project/data/"
@@ -121,19 +80,9 @@ def shoro():
                 
                 data1["name"]=client_name
                 data1["id"]=client_id
-                root.destroy()
+                login_interface.window.destroy()
                 
-
-        GButton_281=Button(root,font=("Times",18),command=insert)
-        GButton_281["activeforeground"] = "#ffffff"
-        GButton_281["bg"] = "#fad400"
-        GButton_281["fg"] = "#000000"
-        GButton_281["justify"] = "center"
-        GButton_281["text"] = "شروع"
-        GButton_281["relief"] = "raised"
-        GButton_281.place(x=340,y=410,width=125,height=37)
-
-        root.mainloop()
+        login_interface.run()
         return data1
 
 #-------------------------
@@ -184,7 +133,7 @@ for pack in sen_packs:
                 bg="#dcdcdc",
                 justify="center",
                 relief="raised",
-                font=("ariel", 18))
+                font=("vazir", 16))
         lbl1.place(x=350,y=200,width=340,height=63)
 
         
@@ -227,7 +176,7 @@ for pack in sen_packs:
                 bg="#dcdcdc",
                 justify="center",
                 relief="raised",
-                font=("ariel", 15))
+                font=("vazir", 13))
         lbl1.place(x=350,y=100,width=340,height=63)
 
         a=0
@@ -238,7 +187,7 @@ for pack in sen_packs:
         relief="solid",
         background='#ffffff',
         justify="center",
-        font=("Times",17))
+        font=("vazir",15))
         lbl2.place(x=50,y=230,width=890,height=136)
         def move():
             global a
@@ -246,94 +195,21 @@ for pack in sen_packs:
             if a<len(sc):
                 lbl2.configure(text=sc[a])
                 a+=1
-                root.after(3000,move) # time of each scense
+                root.after(100,move) # time of each scense
             elif a==len(sc):
+                root.destroy()
+                global sq
+                questioninterf=yesnoquestion() # qi = question interface
+                
+                def destroy_window():
+                    questioninterf.window.destroy()
 
-                def create_window():
-                    global sq
-                    new_window = Tk()
-                    new_window.title('سوال')
-                    width=1000
-                    height=600
-                    screenwidth = new_window.winfo_screenwidth()
-                    screenheight = new_window.winfo_screenheight()
-                    alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
-                    new_window.geometry(alignstr)
-                    new_window.resizable(width=False, height=False)
-
-                    def on_closing():
-                        exit()
-
-                    new_window.protocol("WM_DELETE_WINDOW", on_closing)
-
-                    GLabel_747=Label(new_window)
-                    GLabel_747["bg"] = "#fad400"
-                    GLabel_747["fg"] = "#333333"
-                    GLabel_747["justify"] = "center"
-                    GLabel_747["text"] = ""
-                    GLabel_747.place(x=0,y=20,width=1000,height=30)
-
-                    lbl1=Label(new_window,text="عنوان سناریو : "+list_of_sen[sen_num].name,
-                    bg = "#dcdcdc",
-                    relief="raised",
-                    justify = "center",
-                    font=('Times',15))
-                    lbl1.place(x=350,y=100,width=340,height=63)
-
-                    lbl2=Label(new_window,text=sq,
-                    relief="solid",
-                    background="#ffffff",
-                    justify="center",
-                    fg = "#333333",
-                    font=("Times",17))
-                    lbl2.place(x=50,y=230,width=890,height=136)
-
-                    def simp_check(a):
-                        if a==1:
-                            v_tow.set(0)
-                        elif a==2:
-                            v_one.set(0)
-                            
-
-                    v_one=IntVar()
-                    v_tow=IntVar()
-                    optn1=Checkbutton(new_window,text="بله",variable=v_one,
-                    activeforeground= "#fad400",
-                    bg = "#00babd",
-                    font=('Times',18),
-                    fg = "#333333",
-                    justify = "center",
-                    relief="raised",
-                    command=lambda:simp_check(1)
-                    )
-                    optn1.place(x=550,y=450,width=100,height=35)
-
-                    optn2=Checkbutton(new_window,text="خیر",variable=v_tow,
-                                            activeforeground = "#fad400",
-                                            bg = "#00babd",
-                                            font=('Times',18),
-                                            fg = "#333333",
-                                            justify = "center",
-                                            relief="raised",
-                                            command=lambda:simp_check(2))
-                    optn2.place(x=340,y=450,width=100,height=35)
-
-                    def simp_check(check):
-                        if check == 1:  # If option 1 is checked
-                            optn2.deselect()  # Deselect option 2
-                        elif check == 2:  # If option 2 is checked
-                            optn1.deselect()  # Deselect option 1
-
-                    btn1=Button(new_window,text="ادامه",
-                    activeforeground = "#fad400",
-                    bg = "#fad400",
-                    fg = "#000000",
-                    justify = "center",
-                    relief = "raised",
-                    command=new_window.destroy,font=('Times',18)).place(x=430,y=520,width=125,height=37)
-
-                    root.destroy()
-                create_window()    
+                questioninterf.canvas.itemconfig(questioninterf.question, text=sq)
+                onvan_text="عنوان سناریو : "+list_of_sen[sen_num].name
+                questioninterf.canvas.itemconfig(questioninterf.tt, text=onvan_text)
+                questioninterf.button_yes.configure(command=lambda:destroy_window())
+                questioninterf.button_no.configure(command=lambda:destroy_window())
+                questioninterf.run()
         move()
         root.mainloop()
 
@@ -372,7 +248,7 @@ for pack in sen_packs:
     background="#ffffff",
     justify="center",
     fg = "#333333",
-    font=("Times",17))
+    font=("vazir",14))
     lbl2.place(x=50,y=200,width=700,height=140)
 
     btn1=Button(root,text="ادامه",
@@ -381,89 +257,11 @@ for pack in sen_packs:
     fg = "#000000",
     justify = "center",
     relief = "raised",
-    command=root.destroy,font=('arial',18)).place(x=330,y=430,width=125,height=37)
+    command=root.destroy,font=('vazir',16)).place(x=330,y=430,width=125,height=37)
 
     root.mainloop()
     #-----------------------------------------------------                        ui check
-    def check(option):
-        if(option==1):
-            val2.set(0)
-            val3.set(0)
-            val4.set(0)
-        elif(option==2):
-            val1.set(0)
-            val3.set(0)
-            val4.set(0)
-        elif(option==3): 
-            val1.set(0)
-            val2.set(0)
-            val4.set(0)
-        elif(option==4):
-            val1.set(0)
-            val2.set(0)
-            val3.set(0)
-
-    # def next():
-    #     global Question_no,a_first,d_last
-    #     cont=False
-    #     if Ansewers[Question_no-1]=='a':
-    #         if val1.get()==1:
-    #             a_first='3'
-    #             cont=True
-    #         elif val2.get()==1:
-    #             a_first='2'
-    #             cont=True
-    #         elif val3.get()==1:
-    #             a_first='1'
-    #             cont=True
-    #         elif val4.get()==1:
-    #             a_first='0'
-    #             cont=True
-                
-    #         # main_data[def_name]:"a"+selected_option    
-    #     elif   Ansewers[Question_no-1]=='d':
-    #             if val1.get()==1:
-    #                 d_last='0'
-    #                 cont=True
-    #             elif val2.get()==1:
-    #                 d_last='1'
-    #                 cont=True
-    #             elif val3.get()==1:
-    #                 d_last='2'
-    #                 cont=True
-    #             elif val4.get()==1:
-    #                 d_last='3'
-    #                 cont=True
-    #     else:
-    #         if val1.get()==1:
-    #             tmp='0'
-    #             cont=True
-    #         elif val2.get()==1:
-    #             tmp='1'
-    #             cont=True
-    #         elif val3.get()==1:
-    #             tmp='2'
-    #             cont=True
-    #         elif val4.get()==1:
-    #             tmp='3'
-    #             cont=True
-
-
-    #     Question_no+=1
-    #     if cont==False:
-    #         messagebox.showinfo("خطا","لطفا یک گزینه را انتخاب کنید")
-    #         Question_no-=1
-    #         return
-    #     elif Question_no>Total_No_Questions:
-    #         main_data[def_name]="a"+a_first+"/"+"d"+d_last
-    #         win.destroy()
-    #     else :
-    #         val1.set(0)
-    #         val2.set(0)
-    #         val3.set(0)
-    #         val4.set(0)
-    #         question.config(text=Questions[Question_no-1])         
-        
+         
     def ran_dic(dic):
         keys=list(dic.keys())
         random.shuffle(keys)
@@ -545,10 +343,10 @@ for pack in sen_packs:
         bg = "#dcdcdc",
         justify = "center",
         relief = "raised",
-        font=('Times',15),text=sub)
+        font=('vazir',15),text=sub)
         sub.place(x=350,y=100,width=340,height=63)
 
-        question=Label(root,font=('Times',18),text=Questions[0],
+        question=Label(root,font=('vazir',16),text=Questions[0],
         fg = "#333333",
         justify= "center",
         relief = "raised",
@@ -561,7 +359,7 @@ for pack in sen_packs:
         btn_positive=Button(root,
                             text="تناسب ندارد",
                             bg="#dcdcdc",
-                            font=('arial',17),
+                            font=('vazir',15),
                             justify="center",
                             relief="raised",
                             command=lambda :next_2("-")
@@ -571,7 +369,7 @@ for pack in sen_packs:
         btn_positive=Button(root,
                             text="تناسب دارد",
                             bg="#dcdcdc",
-                            font=('arial',17),
+                            font=('vazir',15),
                             justify="center",
                             relief="raised",
                             command=lambda :next_2("+")

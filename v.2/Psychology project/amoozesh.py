@@ -6,7 +6,9 @@ from tkinter import *
 from tkinter import messagebox
 import json
 from sys import exit
-
+# interface
+from amoozesh_login import Logininterface
+from question_interface import yesnoquestion
 #-------------------------
 class sce:    #class that get the scenario from the file
 
@@ -46,79 +48,26 @@ class sce:    #class that get the scenario from the file
 #-------------------------
 def shoro():
         vorod_dasti=False
-        root=Tk()
-        width=800
-        height=500
-        screenwidth = root.winfo_screenwidth()
-        screenheight = root.winfo_screenheight()
-        alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
-        root.geometry(alignstr)
-        root.resizable(width=False, height=False)
-        root.title("شروع")
-
-
-        def on_closing():
-                        exit()
-
-        root.protocol("WM_DELETE_WINDOW", on_closing)
-
-        GLabel_7400=Label(root)
-        GLabel_7400["bg"] = "#fad400"
-        GLabel_7400["fg"] = "#333333"
-        GLabel_7400["justify"] = "center"
-        GLabel_7400["text"] = ""
-        GLabel_7400.place(x=0,y=20,width=801,height=30)
-
-
-        GLabel_944=Label(root,font=("Times",15))
-        GLabel_944["bg"] = "#dcdcdc"
-
-        GLabel_944["justify"] = "center"
-        GLabel_944["text"] = "جهت شروع ابتدا آیدی خود را که در گذاشته وارد کرده بودید مجددا وارد کنید و سپس روی دکمه شروع کلیک کنید"
-        GLabel_944.place(x=10,y=100,width=775,height=37)
-
-        
-
-        GLabel_33=Label(root,font=("Times",13))
-        GLabel_33["fg"] = "#333333"
-        GLabel_33["justify"] = "center"
-        GLabel_33["text"] = " : آیدی  "
-        GLabel_33.place(x=360,y=220,width=70,height=25)
-
-        ins_id=Entry(root,font=("Times",12))
-        ins_id["bg"] = "#ffffff"
-        ins_id["borderwidth"] = "1px"
-        ins_id["fg"] = "#333333"
-        ins_id["justify"] = "center"
-        ins_id.place(x=190,y=270,width=410,height=40)
-
-        lbl_j=Label(root,font=("arial",13),text="وارد کنید a1 تا a6 جلسه مورد نظر خود را با فرمت")
-        lbl_j.pack()
-        lbl_j.pack_forget()
-
-        ent_j=Entry(root,font=("arial",13))
-        ent_j["bg"] = "#ffffff"
-        ent_j["borderwidth"] = "1px"
-        ent_j["fg"] = "#333333"
-        ent_j["justify"] = "center"
-        ent_j.pack()
-        ent_j.pack_forget()
+        logininterface=Logininterface()
+        logininterface.button_1.configure(command=lambda:insert(logininterface.entry_1.get()))
+        logininterface.button_2.configure(command=lambda:custom_insert())
         #-------------------------
         data1=dict()
         
         def custom_insert():
             nonlocal vorod_dasti
-            lbl_j.pack()
-            lbl_j.place(x=250,y=320,width=300,height=25)
-            ent_j.pack()
-            ent_j.place(x=250,y=350,width=300,height=25)
-            messagebox.showinfo("هشدار","با ورود دستی ممکن است دیتابیس دچار آسیب شود")
-            vorod_dasti=True
+            if vorod_dasti==False:
+                messagebox.showinfo("هشدار","با ورود دستی ممکن است دیتابیس دچار آسیب شود")
+                vorod_dasti=True
+                logininterface.hand_login(vorod_dasti)
+            elif vorod_dasti==True:
+                vorod_dasti=False
+                logininterface.hand_login(vorod_dasti)
+
 
         #----------
-        def insert():
-            
-            client_id=ins_id.get()
+        def insert(client_id):
+
             next_page=True
             file_to_open='../Psychology project/data/client.json'        
             with open(file_to_open,'r') as f:
@@ -151,15 +100,22 @@ def shoro():
                         elif last_j=="a8":
                             messagebox.showinfo("هشدار","شما جلسات آموزشی را به پایان رسانده اید لطفا این برنامه را ببندید")
                             next_page=False
-                            break;
+                            break
                         else:
                             messagebox.showinfo("هشدار","خطایی رخ داده است لطفا این برنامه را ببندید و به پشتیبانی اطلاع دهید")
                             next_page=False
-                            break;
+                            break
                     else:
-                                jalaseh=ent_j.get()
+                        jalaseh=logininterface.entry_2.get()
+                        jalaseh=jalaseh.lower()
+                        if jalaseh=='' or jalaseh[0]!='a' or jalaseh[1].isdigit()!=True  :
+                            messagebox.showinfo("هشدار","ورودی دستی شما با فرمت درست نبوده است")
+                            next_page=False
+                            break
+                        
+                                     
                     next_page=True    
-                    break;
+                    break
             else:
                 messagebox.showinfo("رد","آیدی مورد نظر پیدا نشد")
                 next_page=False
@@ -172,24 +128,9 @@ def shoro():
                 data1["name"]=client_name
                 data1["id"]=client_id
                 data1["jalaseh"]=jalaseh
-                root.destroy()
+                logininterface.window.destroy()
         #-------       
-        GButton_281=Button(root,font=("Times",18),command=insert)
-        GButton_281["activeforeground"] = "#ffffff"
-        GButton_281["bg"] = "#fad400"
-        GButton_281["fg"] = "#000000"
-        GButton_281["justify"] = "center"
-        GButton_281["text"] = "شروع"
-        GButton_281["relief"] = "raised"
-        GButton_281.place(x=340,y=410,width=125,height=37)
-        #---------------------------       
-        GButton_50=Button(root,font=("Times",10),command=custom_insert)
-        GButton_50["fg"] = "#000000"
-        GButton_50["justify"] = "center"
-        GButton_50["text"] = "ورود دستی"
-        GButton_50.place(x=710,y=460,width=70,height=25)
-
-        root.mainloop()
+        logininterface.run()
         return data1
 #-------
 def list_of_jalaseh(jalaseh):
@@ -271,7 +212,7 @@ for reza in final_list :
                 bg="#dcdcdc",
                 justify="center",
                 relief="raised",
-                font=("ariel", 18))
+                font=("vazir", 16))
         lbl1.place(x=350,y=200,width=340,height=63)
 
         
@@ -314,7 +255,7 @@ for reza in final_list :
 
                 justify="center",
                 relief = "raised",
-                font=("ariel", 15))
+                font=("vazir", 13))
         lbl1.place(x=350,y=100,width=340,height=63)
 
         a=0
@@ -325,7 +266,7 @@ for reza in final_list :
         relief="solid",
         background='#ffffff',
         justify="center",
-        font=("Times",17))
+        font=("vazir",15))
         lbl2.place(x=10,y=230,width=980,height=136)
         def move():
             global a
@@ -333,98 +274,21 @@ for reza in final_list :
             if a<len(sc):
                 lbl2.configure(text=sc[a])
                 a+=1
-                root.after(3000,move) # time of each scense
+                root.after(100,move) # time of each scense
             elif a==len(sc):
-
-                def create_window():
-                    global sq
-                    new_window = Tk()
-                    new_window.title('سوال')
-                    width=1000
-                    height=600
-                    screenwidth = new_window.winfo_screenwidth()
-                    screenheight = new_window.winfo_screenheight()
-                    alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
-                    new_window.geometry(alignstr)
-                    new_window.resizable(width=False, height=False)
-
+                global sq
+                root.destroy() 
+                questioninterf=yesnoquestion() # qi = question interface
                 
+                def destroy_window():
+                    questioninterf.window.destroy()
 
-                    GLabel_747=Label(new_window)
-                    GLabel_747["bg"] = "#fad400"
-                    GLabel_747["fg"] = "#333333"
-                    GLabel_747["justify"] = "center"
-                    GLabel_747["text"] = ""
-                    GLabel_747.place(x=0,y=20,width=1000,height=30)
-
-                    def on_closing():
-                        exit()
-
-                    new_window.protocol("WM_DELETE_WINDOW", on_closing)
-
-
-                    lbl1=Label(new_window,text="عنوان سناریو : "+list_of_sen[i].name,
-                    bg = "#dcdcdc",
-                    relief="raised",
-
-                    justify = "center",
-                    font=('Times',15))
-                    lbl1.place(x=350,y=100,width=340,height=63)
-
-                    lbl2=Label(new_window,text=sq,
-                    relief="solid",
-                    background="#ffffff",
-                    justify="center",
-                    fg = "#333333",
-                    font=("Times",17))
-                    lbl2.place(x=50,y=230,width=890,height=136)
-
-                    def simp_check(a):
-                        if a==1:
-                            v_tow.set(0)
-                        elif a==2:
-                            v_one.set(0)
-                            
-
-                    v_one=IntVar()
-                    v_tow=IntVar()
-                    optn1=Checkbutton(new_window,text="بله",variable=v_one,
-                    activeforeground= "#fad400",
-                    bg = "#00babd",
-                    font=('Times',18),
-                    fg = "#333333",
-                    justify = "center",
-                    relief="raised",
-                    command=lambda:simp_check(1)
-                    )
-                    optn1.place(x=550,y=450,width=100,height=35)
-
-                    optn2=Checkbutton(new_window,text="خیر",variable=v_tow,
-                                            activeforeground = "#fad400",
-                                            bg = "#00babd",
-                                            font=('Times',18),
-                                            fg = "#333333",
-                                            justify = "center",
-                                            relief="raised",
-                                            command=lambda:simp_check(2))
-                    optn2.place(x=340,y=450,width=100,height=35)
-
-                    def simp_check(check):
-                        if check == 1:  # If option 1 is checked
-                            optn2.deselect()  # Deselect option 2
-                        elif check == 2:  # If option 2 is checked
-                            optn1.deselect()  # Deselect option 1
-
-                    btn1=Button(new_window,text="ادامه",
-                    activeforeground = "#fad400",
-                    bg = "#fad400",
-                    fg = "#000000",
-                    justify = "center",
-                    relief = "raised",
-                    command=new_window.destroy,font=('Times',18)).place(x=430,y=520,width=125,height=37)
-
-                    root.destroy()
-                create_window()    
+                questioninterf.canvas.itemconfig(questioninterf.question, text=sq)
+                onvan_text="عنوان سناریو : "+list_of_sen[i].name
+                questioninterf.canvas.itemconfig(questioninterf.tt, text=onvan_text)
+                questioninterf.button_yes.configure(command=lambda:destroy_window())
+                questioninterf.button_no.configure(command=lambda:destroy_window())
+                questioninterf.run()
         move()
         root.mainloop()
     #-----------------
@@ -464,7 +328,7 @@ for reza in final_list :
     background="#ffffff",
     justify="center",
     fg = "#333333",
-    font=("Times",16))
+    font=("vazir",14))
     lbl2.place(x=50,y=230,width=691,height=136)
 
     btn1=Button(root,text="ادامه",
@@ -473,7 +337,7 @@ for reza in final_list :
     fg = "#000000",
     justify = "center",
     relief = "raised",
-    command=root.destroy,font=('Times',18)).place(x=330,y=450,width=125,height=37)
+    command=root.destroy,font=('vazir',16)).place(x=330,y=450,width=125,height=37)
 
     root.mainloop()
     #-----------------
@@ -593,7 +457,7 @@ for reza in final_list :
         bg = "#dcdcdc",
         justify = "center",
         relief = "raised",
-        font=('Times',15),text=sub)
+        font=('vazir',13),text=sub)
         sub.place(x=350,y=100,width=340,height=63)
 
         #------------
@@ -604,7 +468,7 @@ for reza in final_list :
 
         option1=Checkbutton(root,text=options[0],variable=val1,
         bg = "#dcdcdc",
-        font=('arial',17),
+        font=('vazir',15),
         justify = "center",
         relief = "raised",
         command=lambda:check(1))
@@ -612,7 +476,7 @@ for reza in final_list :
 
         option2=Checkbutton(root,text=options[1],variable=val2,
         bg = "#dcdcdc",
-        font=('arial',17),
+        font=('vazir',15),
         justify = "center",
         relief = "raised",
         command=lambda:check(2))
@@ -620,7 +484,7 @@ for reza in final_list :
 
         option3=Checkbutton(root,text=options[2],variable=val3,
         bg = "#dcdcdc",
-        font=('arial',17),
+        font=('vazir',15),
         justify = "center",
         relief = "raised",
         command=lambda:check(3))
@@ -628,13 +492,13 @@ for reza in final_list :
 
         option4=Checkbutton(root,text=options[3],variable=val4,
         bg = "#dcdcdc",
-        font=('arial',17),
+        font=('vazir',15),
         justify = "center",
         relief = "raised",
         command=lambda:check(4))
         option4.place(x=100,y=410,width=800,height=40)
 
-        scr_con=Label(root,font=('arial',10))
+        scr_con=Label(root,font=('vazir',10))
         scr_con["justify"] = "center"
         scr_con["relief"] = "sunken"
         scr_con["fg"]='#5fb878'
@@ -642,7 +506,7 @@ for reza in final_list :
         scr_con.place(x=10,y=490,width=135,height=46)
 
 
-        scr_dsp=Label(root,font=('Times',15,'bold'))
+        scr_dsp=Label(root,font=('vazir',13,'bold'))
         scr_dsp["fg"] = "#333333"
         scr_dsp["justify"] = "center"
         scr_dsp["text"] = "امتیاز:"+str(score)
@@ -652,7 +516,7 @@ for reza in final_list :
         next_b=Button(root,text='ادامه',
         activeforeground = "#ffffff",
         bg = "#fad400",
-        font=('Times',18),
+        font=('vazir',16),
         fg = "#000000",
         justify = "center",
         relief = "raised",

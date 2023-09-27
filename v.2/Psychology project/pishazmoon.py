@@ -13,6 +13,7 @@ from collections import OrderedDict
 import time
 #ui
 from signup_interface import SignupInterface
+from question_interface import yesnoquestion
 #-------------------------
 def bc800(root):
     bg=PhotoImage(file="../Psychology project/bak/bc1-800.500.png")
@@ -62,8 +63,7 @@ class sce:    #class that get the scenario from the file  + with the loop
 
 
 def shoro():
-
-        
+    
         signup_interface=SignupInterface()
         signup_interface.button.configure(command=lambda:insert(signup_interface.entry_1.get(),signup_interface.entry_2.get()))
 
@@ -124,7 +124,7 @@ for pack in scenario_packs :
         width=1000
         height=600
         screenwidth = root2.winfo_screenwidth()
-        screenheight = root2.winfo_screenheight()
+        screenheight = root2.winfo_screenheight() 
         alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
         root2.geometry(alignstr)
         root2.resizable(width=False, height=False)
@@ -143,7 +143,7 @@ for pack in scenario_packs :
                 bg="#dcdcdc",
                 justify="center",
                 relief="raised",
-                font=("ariel", 18))
+                font=("vazir", 16))
         lbl1.place(x=350,y=200,width=340,height=63)
 
         
@@ -155,7 +155,6 @@ for pack in scenario_packs :
         #make main window
         root=Tk()
         root.title('psycho test')
-        
         width=1000
         height=600
         screenwidth = root.winfo_screenwidth()
@@ -189,7 +188,7 @@ for pack in scenario_packs :
                 bg="#dcdcdc",
                 justify="center",
                 relief="raised",
-                font=("ariel", 18))
+                font=("vazir", 16))
         lbl1.place(x=350,y=100,width=340,height=63)
         
 
@@ -201,7 +200,7 @@ for pack in scenario_packs :
         relief="solid",
         background='#ffffff',
         justify="center",
-        font=("Times",17))
+        font=("vazir",14))
         lbl2.place(x=50,y=230,width=890,height=136)
         def move():
             global a
@@ -209,101 +208,22 @@ for pack in scenario_packs :
             if a<len(sc):
                 lbl2.configure(text=sc[a])
                 a+=1
-                root.after(3000,move) # time of each scense 
+                root.after(100,move) # time of each scense 
             elif a==len(sc):
+                root.destroy()
+                global sq
+                questioninterf=yesnoquestion() # qi = question interface
+                
+                def destroy_window():
+                    questioninterf.window.destroy()
 
-                def create_window():
-                    global sq
-                    new_window = Tk()
-                    new_window.title('سوال')
-                    width=1000
-                    height=600
-                    screenwidth = new_window.winfo_screenwidth()
-                    screenheight = new_window.winfo_screenheight()
-                    alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
-                    new_window.geometry(alignstr)
-                    new_window.resizable(width=False, height=False)
-
-
-
-
-                    def on_closing():
-                        exit()
-
-                    new_window.protocol("WM_DELETE_WINDOW", on_closing)
-
-
-
-
-                    yellow_roban=Label(new_window)
-                    yellow_roban["bg"] = "#fad400"
-                    yellow_roban["fg"] = "#333333"
-                    yellow_roban["justify"] = "center"
-                    yellow_roban["text"] = ""
-                    yellow_roban.place(x=0,y=20,width=1000,height=30)
-
-                    lbl1=Label(new_window,text="عنوان سناریو : "+list_of_sen[sen_num].name,
-                    bg = "#dcdcdc",
-                    relief="raised",
-                    justify = "center",
-                    font=('Times',18))
-                    lbl1.place(x=350,y=100,width=340,height=63)
-
-                    lbl2=Label(new_window,text=sq,
-                    relief="solid",
-                    background="#ffffff",
-                    justify="center",
-                    fg = "#333333",
-                    font=("Times",17))
-                    lbl2.place(x=50,y=230,width=890,height=136)
-
-                    def simp_check(a):
-                        if a==1:
-                            v_tow.set(0)
-                        elif a==2:
-                            v_one.set(0)
-                            
-
-                    v_one=IntVar()
-                    v_tow=IntVar()
-                    optn1=Checkbutton(new_window,text="بله",variable=v_one,
-                    activeforeground= "#fad400",
-                    bg = "#00babd",
-                    font=('Times',18),
-                    fg = "#333333",
-                    justify = "center",
-                    relief="raised",
-                    command=lambda:simp_check(1)
-                    )
-                    optn1.place(x=550,y=450,width=100,height=35)
-
-                    optn2=Checkbutton(new_window,text="خیر",variable=v_tow,
-                                            activeforeground = "#fad400",
-                                            bg = "#00babd",
-                                            font=('Times',18),
-                                            fg = "#333333",
-                                            justify = "center",
-                                            relief="raised",
-                                            command=lambda:simp_check(2))
-                    optn2.place(x=340,y=450,width=100,height=35)
-
-                    def simp_check(check):
-                        if check == 1:  # If option 1 is checked
-                            optn2.deselect()  # Deselect option 2
-                        elif check == 2:  # If option 2 is checked
-                            optn1.deselect()  # Deselect option 1
-
-                    btn1=Button(new_window,text="ادامه",
-                    activeforeground = "#fad400",
-                    bg = "#fad400",
-                    fg = "#000000",
-                    justify = "center",
-                    relief = "raised",
-                    command=new_window.destroy,font=('Times',18))
-                    btn1.place(x=430,y=520,width=125,height=37)
-
-                    root.destroy()
-                create_window()    
+                questioninterf.canvas.itemconfig(questioninterf.question, text=sq)
+                onvan_text="عنوان سناریو : "+list_of_sen[sen_num].name
+                questioninterf.canvas.itemconfig(questioninterf.tt, text=onvan_text)
+                questioninterf.button_yes.configure(command=lambda:destroy_window())
+                questioninterf.button_no.configure(command=lambda:destroy_window())
+                questioninterf.run()
+                    
         move()
         root.mainloop()
 
@@ -347,7 +267,7 @@ for pack in scenario_packs :
     background="#ffffff",
     justify="center",
     fg = "#333333",
-    font=("Times",17))
+    font=("vazir",14))
     lbl2.place(x=50,y=200,width=700,height=140)
 
     btn1=Button(root,text="ادامه",
@@ -356,7 +276,7 @@ for pack in scenario_packs :
     fg = "#000000",
     justify = "center",
     relief = "raised",
-    command=root.destroy,font=('arial',18)).place(x=330,y=430,width=125,height=37)
+    command=root.destroy,font=('vazir',16)).place(x=330,y=430,width=125,height=37)
 
     root.mainloop()
     #-----------------------------------------------------                        ui check
@@ -517,10 +437,10 @@ for pack in scenario_packs :
         bg = "#dcdcdc",
         justify = "center",
         relief = "raised",
-        font=('Times',18),text=sub)
+        font=('vazir',16),text=sub)
         sub.place(x=350,y=100,width=340,height=63)
 
-        question=Label(root,font=('Times',18),text=Questions[0],
+        question=Label(root,font=('vazir',16),text=Questions[0],
         fg = "#333333",
         justify= "center",
         relief="solid",
@@ -533,7 +453,7 @@ for pack in scenario_packs :
         btn_positive=Button(root,
                             text="تناسب ندارد",
                             bg="#dcdcdc",
-                            font=('arial',17),
+                            font=('vazir',15),
                             justify="center",
                             relief="raised",
                             command=lambda :next_2("-")
@@ -543,7 +463,7 @@ for pack in scenario_packs :
         btn_positive=Button(root,
                             text="تناسب دارد",
                             bg="#dcdcdc",
-                            font=('arial',17),
+                            font=('vazir',15),
                             justify="center",
                             relief="raised",
                             command=lambda :next_2("+")

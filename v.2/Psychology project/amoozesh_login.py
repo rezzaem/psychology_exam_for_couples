@@ -1,12 +1,13 @@
 from pathlib import Path
 from tkinter import Tk, Canvas, Entry, Button, PhotoImage
 import webbrowser
+
 # OUTPUT_PATH = Path(__file__).parent
 # ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\turbo\Desktop\Py\Psychology project\develope\psychology_exam_for_couples\v.2\Psychology project\NEW interface\figma_signup\build\assets\frame0")
 
-class SignupInterface:
+class Logininterface:
     def address(self,file):
-        return "../Psychology project/bak/signup/"+file
+        return "../Psychology project/bak/amoozesh-login/"+file
 
     def on_closing(self):
         exit()
@@ -16,7 +17,9 @@ class SignupInterface:
         self.window = Tk()
         self.window.geometry("1280x720")
         self.window.configure(bg="#E2E2E2")
-        self.window.title("Signup psycho")
+        self.window.resizable(width=False, height=False)
+        self.window.title("login psycho")
+
 
 
         # Load images
@@ -25,11 +28,13 @@ class SignupInterface:
         self.image_3 = PhotoImage(file=self.address("image_3.png"))
         self.image_4 = PhotoImage(file=self.address("image_4.png"))
         self.image_5 = PhotoImage(file=self.address("image_5.png"))
-        self.image_7= PhotoImage(file=self.address("image_7.png"))
+        self.image_6 = PhotoImage(file=self.address("image_6.png"))
         self.button_image = PhotoImage(file=self.address("button_1.png"))
+        self.button_image_2= PhotoImage(file=self.address("button_2.png"))
+        self.entry_image_1 = PhotoImage(file=self.address("entry_1.png"))
+        self.entry_image_2 = PhotoImage(file=self.address("entry_2.png"))
         self.window.protocol("WM_DELETE_WINDOW", self.on_closing)
         self.setup_ui()
-    
 
     def setup_ui(self):
         # basic items that exist in both mode sign up and login
@@ -57,8 +62,8 @@ class SignupInterface:
         )
 
         image_2 = self.canvas.create_image(
-            641.0,
-            435.0,
+        632.0,
+        376.0,
             image=self.image_2
         )
 
@@ -69,8 +74,7 @@ class SignupInterface:
             38.0,
             fill="#7FD1B9",
             outline="")
-        
-        
+
         self.canvas.create_text(
             42.0,
             690.0,
@@ -80,82 +84,39 @@ class SignupInterface:
             activefill="#E2E2E2",
             font=("Inter", 10 * -1),
             tags="link"
-            
         )
         self.canvas.tag_bind("link", "<Button-1>", self.callback)
 
-        
-        
 
         image_3 = self.canvas.create_image(
-            641.0,
-            179.0,
-            image=self.image_3
+        632.0,
+        183.0,
+        image=self.image_3
         )
 
 
-
-        image_7 = self.canvas.create_image(
-            327.0,
-            560.0,
-            image=self.image_7
-        )
-        #-----------------------------------------------------------------------------------
-            
         self.canvas.create_text(
             635.0, # x
             180.0, # y
-            text="سلام به برنامه پرسشنامه اولیه خوش آمدید",
+            text="سلام به برنامه پرسشنامه  خوش آمدید",
             fill="#000000",
             font=("Arial Bold", 24 * -1)
         )
-
         self.canvas.create_text(
-            650.0, #x
-            270.0, # y
-            text="نام و نام کاربری جدید خود را وارد کنید",
-            fill="#000000",
-            font=("RobotoRoman Bold", 24 * -1)
+        635.0, #x
+        270.0, # y
+        text="نام کاربری خود را وارد کنید",
+        fill="#000000",
+        font=("Arial bold", 24 * -1)
         )
-        
         self.canvas.create_text(
-            770.0, #x
-            340.0, # y
-            text="نام",
-            fill="#000000",
-            font=("Arial", 18 * -1)
-         )
-        
-        self.canvas.create_text(
-            755, #x
-            445.0, #y
-            
-            text="نام کاربری",
-            fill="#000000",
-            font=("Arial", 18 * -1)
+        735.0,
+        335.0,
+        anchor="nw",
+        text="نام کاربری",
+        fill="#000000",
+        font=("Arial", 16 * -1)
         )
-
-        self.entry_2 = Entry(
-            bd=0,
-            bg="#D9D9D9",
-            fg="#000716",
-            justify="center",
-            highlightthickness=2,
-            font=("arial",14) # Set justify attribute to "right"
-        )
-        self.entry_2.place(
-            x=441.0,
-            y=462.0,
-            width=370.0,
-            height=38.0
-        )
-
-        mage_5 = self.canvas.create_image(
-            810.0,
-            446.0,
-            image=self.image_5
-        )
-
         self.canvas.create_rectangle(
             7.0,
             9.0,
@@ -171,7 +132,6 @@ class SignupInterface:
             29.0,
             fill="#7A6563",
             outline="")
-
         self.canvas.create_rectangle(
             79.0,
             9.0,
@@ -180,19 +140,21 @@ class SignupInterface:
             fill="#BC3800",
             outline="")
 
-        self.button = Button(
+
+        self.button_1 = Button(
             image=self.button_image,
             borderwidth=2,
             highlightthickness=1,
-            command=lambda: print(self.entry_1.get(),self.entry_2.get()),
+            command=lambda: self.hand_login(False),
             relief="raised"
         )
-        self.button.place(
-            x=548.0,
-            y=561.0,
-            width=186.0,
+        self.button_1.place(
+            x=534.0,
+            y=447.0,
+            width=186.0, 
             height=52.0
         )
+
 
         self.entry_1 = Entry(
             bd=0,
@@ -200,7 +162,7 @@ class SignupInterface:
             fg="#000716",
             justify="center",
             highlightthickness=2,
-            font=("arial",14)  # Set justify attribute to "right"
+            font=("arial",14)
         )
         self.entry_1.place(
             x=441.0,
@@ -208,24 +170,84 @@ class SignupInterface:
             width=370.0,
             height=38.0
         )
-
-        image_4 = self.canvas.create_image(
+        self.image_image_5 = PhotoImage(
+            file=self.address("image_5.png"))
+        self.image_5 = self.canvas.create_image(
             810.0,
             340.0,
-            image=self.image_4
+            image=self.image_image_5
         )
-
-        
-
-        self.window.resizable(False, False)
+        self.image_image_4 = PhotoImage(
+            file=self.address("image_4.png"))
+        image_4 = self.canvas.create_image(
+            423.0,
+            124.0,
+            image=self.image_image_4
+        )
+        self.button_2 = Button(
+            image=self.button_image_2,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.hand_login(True)
+        )
+        self.button_2.place(
+            x=1166.0,
+            y=657.0,
+            width=95.0,
+            height=52.0
+        )
 
     def callback(self,event):
             webbrowser.open_new("https://www.instagram.com/rezza.code/")
+   
+
+    def hand_login(self, vorod_dasti):
+        if vorod_dasti==True:
+            self.image_6_vorod = self.canvas.create_image(
+                988.0,
+                683.0,
+                image=self.image_6
+            )
+            self.txt_vorod = self.canvas.create_text(
+                850.0,  # x
+                675.0,  # y
+                anchor="nw",
+                text="وارد کنید a8 تا a1 جلسه مورد نظر خود را با فرمت",
+                fill="#000000",
+                font=("arial bold", 16 * -1)
+            )
+
+            self.entry_2 = Entry(
+                self.canvas,
+                bd=0,
+                bg="#B89FFF",
+                fg="#000716",
+                justify="center",
+                highlightthickness=1,
+                font=("arial bold", 16 * -1)
+            )
+            self.entry_2.place(
+                x=696.0,
+                y=657.0,
+                width=117.0,
+                height=50.0
+            )
+        else:
+            self.entry_2.destroy()  # destroy entry_2
+            self.canvas.delete(self.txt_vorod)  # delete txt_vorod
+            self.canvas.delete(self.image_6_vorod)  # delete image_6_vorod
+
+
+
+
+
+        
+   
 
     def run(self):
         self.window.mainloop()
 
-
+    
 if __name__ == "__main__":
-    interf = SignupInterface()
+    interf = Logininterface()
     interf.run()
