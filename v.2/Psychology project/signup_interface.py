@@ -1,6 +1,7 @@
 from pathlib import Path
 from tkinter import Tk, Canvas, Entry, Button, PhotoImage
 import webbrowser
+from sys import exit
 # OUTPUT_PATH = Path(__file__).parent
 # ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\turbo\Desktop\Py\Psychology project\develope\psychology_exam_for_couples\v.2\Psychology project\NEW interface\figma_signup\build\assets\frame0")
 

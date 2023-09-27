@@ -1,4 +1,6 @@
 from tkinter import Tk,Canvas,Button,PhotoImage
+from sys import exit
+
 class yesnoquestion:
     def address(self,file):
         return "../Psychology project/bak/yesnoquestion/"+file

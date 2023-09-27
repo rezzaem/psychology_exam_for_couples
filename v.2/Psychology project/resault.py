@@ -4,7 +4,6 @@ from bidi.algorithm import get_display
 import tkinter as tk
 import tkinter.font as tkFont
 import json
-
 # Load the data from the json file\
 file_to_open='../Psychology project/data/client.json'        
 with open(file_to_open,'r') as f:
@@ -268,9 +267,9 @@ class App:
             points_sum=0
         #--------
         try:
-            self.pish_data["text"] = str(points_sum)+"/300"
+            self.pish_data["text"] = str(points_sum)+"/225"
         except:
-            self.pish_data["text"]="None/300"
+            self.pish_data["text"]="None/225"
         #---------
         try:
             tmp=data["client"][self.number]["pas"]
@@ -282,9 +281,9 @@ class App:
             points_sum=0
         #--------
         try:
-            self.pas_data["text"] = str(points_sum)+"/300"
+            self.pas_data["text"] = str(points_sum)+"/225"
         except:
-            self.pas_data["text"] = "Non/300"
+            self.pas_data["text"] = "Non/225"
         try:
             self.j1_data["text"] = data["client"][self.number]["a1"]
         except:
