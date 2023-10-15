@@ -208,7 +208,7 @@ for pack in scenario_packs :
             if a<len(sc):
                 lbl2.configure(text=sc[a])
                 a+=1
-                root.after(100,move) # time of each scense 
+                root.after(3000,move) # time of each scense 
             elif a==len(sc):
                 root.destroy()
                 global sq

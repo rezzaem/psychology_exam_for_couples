@@ -30,7 +30,7 @@ class App:
 
         self.num=tk.Label(root)
         self.num["bg"] = "#fad400"
-        ft = tkFont.Font(family='Times',size=10)
+        ft = tkFont.Font(family='Times',size=12)
         self.num["font"] = ft
         self.num["fg"] = "#333333"
         self.num["justify"] = "center"
@@ -39,7 +39,7 @@ class App:
 
         name=tk.Label(root)
         name["bg"] = "#1e9fff"
-        ft = tkFont.Font(family='Times',size=13)
+        ft = tkFont.Font(family='Times',size=12)
         name["font"] = ft
         name["fg"] = "#333333"
         name["justify"] = "center"
@@ -48,7 +48,7 @@ class App:
 
         self.name_data=tk.Label(root)
         self.name_data["bg"] = "#5fb878"
-        ft = tkFont.Font(family='Times',size=10)
+        ft = tkFont.Font(family='Times',size=12)
         self.name_data["font"] = ft
         self.name_data["fg"] = "#333333"
         self.name_data["justify"] = "center"
@@ -57,7 +57,7 @@ class App:
 
         id=tk.Label(root)
         id["bg"] = "#1e9fff"
-        ft = tkFont.Font(family='Times',size=10)
+        ft = tkFont.Font(family='Times',size=12)
         id["font"] = ft
         id["fg"] = "#333333"
         id["justify"] = "center"
@@ -66,7 +66,7 @@ class App:
 
         self.id_data=tk.Label(root)
         self.id_data["bg"] = "#5fb878"
-        ft = tkFont.Font(family='Times',size=10)
+        ft = tkFont.Font(family='Times',size=12)
         self.id_data["font"] = ft
         self.id_data["fg"] = "#333333"
         self.id_data["justify"] = "center"
@@ -75,7 +75,7 @@ class App:
 
         pish=tk.Label(root)
         pish["bg"] = "#1e9fff"
-        ft = tkFont.Font(family='Times',size=10)
+        ft = tkFont.Font(family='Times',size=12)
         pish["font"] = ft
         pish["fg"] = "#333333"
         pish["justify"] = "center"
@@ -84,7 +84,7 @@ class App:
 
         self.pish_data=tk.Label(root)
         self.pish_data["bg"] = "#5fb878"
-        ft = tkFont.Font(family='Times',size=10)
+        ft = tkFont.Font(family='Times',size=12)
         self.pish_data["font"] = ft
         self.pish_data["fg"] = "#333333"
         self.pish_data["justify"] = "center"
@@ -93,7 +93,7 @@ class App:
 
         pas=tk.Label(root)
         pas["bg"] = "#1e9fff"
-        ft = tkFont.Font(family='Times',size=10)
+        ft = tkFont.Font(family='Times',size=12)
         pas["font"] = ft
         pas["fg"] = "#333333"
         pas["justify"] = "center"
@@ -102,7 +102,7 @@ class App:
 
         self.pas_data=tk.Label(root)
         self.pas_data["bg"] = "#5fb878"
-        ft = tkFont.Font(family='Times',size=10)
+        ft = tkFont.Font(family='Times',size=12)
         self.pas_data["font"] = ft
         self.pas_data["fg"] = "#333333"
         self.pas_data["justify"] = "center"
@@ -111,7 +111,7 @@ class App:
 
         GLabel_549=tk.Label(root)
         GLabel_549["bg"] = "#ffb800"
-        ft = tkFont.Font(family='Times',size=10)
+        ft = tkFont.Font(family='Times',size=12)
         GLabel_549["font"] = ft
         GLabel_549["fg"] = "#333333"
         GLabel_549["justify"] = "center"
@@ -120,7 +120,7 @@ class App:
 
         j1=tk.Label(root)
         j1["bg"] = "#1e9fff"
-        ft = tkFont.Font(family='Times',size=10)
+        ft = tkFont.Font(family='Times',size=12)
         j1["font"] = ft
         j1["fg"] = "#333333"
         j1["justify"] = "center"
@@ -129,7 +129,7 @@ class App:
 
         self.j1_data=tk.Label(root)
         self.j1_data["bg"] = "#5fb878"
-        ft = tkFont.Font(family='Times',size=10)
+        ft = tkFont.Font(family='Times',size=12)
         self.j1_data["font"] = ft
         self.j1_data["fg"] = "#333333"
         self.j1_data["justify"] = "center"
@@ -138,7 +138,7 @@ class App:
 
         j2=tk.Label(root)
         j2["bg"] = "#1e9fff"
-        ft = tkFont.Font(family='Times',size=10)
+        ft = tkFont.Font(family='Times',size=12)
         j2["font"] = ft
         j2["fg"] = "#333333"
         j2["justify"] = "center"
@@ -147,7 +147,7 @@ class App:
 
         self.j2_data=tk.Label(root)
         self.j2_data["bg"] = "#5fb878"
-        ft = tkFont.Font(family='Times',size=10)
+        ft = tkFont.Font(family='Times',size=12)
         self.j2_data["font"] = ft
         self.j2_data["fg"] = "#333333"
         self.j2_data["justify"] = "center"
@@ -156,7 +156,7 @@ class App:
 
         j3=tk.Label(root)
         j3["bg"] = "#1e9fff"
-        ft = tkFont.Font(family='Times',size=10)
+        ft = tkFont.Font(family='Times',size=12)
         j3["font"] = ft
         j3["fg"] = "#333333"
         j3["justify"] = "center"
@@ -165,7 +165,7 @@ class App:
 
         self.j3_data=tk.Label(root)
         self.j3_data["bg"] = "#5fb878"
-        ft = tkFont.Font(family='Times',size=10)
+        ft = tkFont.Font(family='Times',size=12)
         self.j3_data["font"] = ft
         self.j3_data["fg"] = "#333333"
         self.j3_data["justify"] = "center"
@@ -174,7 +174,7 @@ class App:
 
         GLabel_396=tk.Label(root)
         GLabel_396["bg"] = "#1e9fff"
-        ft = tkFont.Font(family='Times',size=10)
+        ft = tkFont.Font(family='Times',size=12)
         GLabel_396["font"] = ft
         GLabel_396["fg"] = "#333333"
         GLabel_396["justify"] = "center"
@@ -183,7 +183,7 @@ class App:
 
         self.j4_data=tk.Label(root)
         self.j4_data["bg"] = "#5fb878"
-        ft = tkFont.Font(family='Times',size=10)
+        ft = tkFont.Font(family='Times',size=12)
         self.j4_data["font"] = ft
         self.j4_data["fg"] = "#333333"
         self.j4_data["justify"] = "center"
@@ -192,7 +192,7 @@ class App:
 
         GLabel_645=tk.Label(root)
         GLabel_645["bg"] = "#1e9fff"
-        ft = tkFont.Font(family='Times',size=10)
+        ft = tkFont.Font(family='Times',size=12)
         GLabel_645["font"] = ft
         GLabel_645["fg"] = "#333333"
         GLabel_645["justify"] = "center"
@@ -201,7 +201,7 @@ class App:
 
         self.j5_data=tk.Label(root)
         self.j5_data["bg"] = "#5fb878"
-        ft = tkFont.Font(family='Times',size=10)
+        ft = tkFont.Font(family='Times',size=12)
         self.j5_data["font"] = ft
         self.j5_data["fg"] = "#333333"
         self.j5_data["justify"] = "center"
@@ -210,7 +210,7 @@ class App:
 
         GLabel_702=tk.Label(root)
         GLabel_702["bg"] = "#1e9fff"
-        ft = tkFont.Font(family='Times',size=10)
+        ft = tkFont.Font(family='Times',size=12)
         GLabel_702["font"] = ft
         GLabel_702["fg"] = "#333333"
         GLabel_702["justify"] = "center"
@@ -219,23 +219,61 @@ class App:
 
         self.j6_data=tk.Label(root)
         self.j6_data["bg"] = "#5fb878"
-        ft = tkFont.Font(family='Times',size=10)
+        ft = tkFont.Font(family='Times',size=12)
         self.j6_data["font"] = ft
         self.j6_data["fg"] = "#333333"
         self.j6_data["justify"] = "center"
         self.j6_data["text"] = ""
         self.j6_data.place(x=280,y=570,width=70,height=25)
 
+        GLabel_645=tk.Label(root)
+        GLabel_645["bg"] = "#1e9fff"
+        ft = tkFont.Font(family='Times',size=12)
+        GLabel_645["font"] = ft
+        GLabel_645["fg"] = "#333333"
+        GLabel_645["justify"] = "center"
+        GLabel_645["text"] = "جلسه هفتم"
+        GLabel_645.place(x=30,y=630,width=70,height=25)
+
+        self.j7_data=tk.Label(root)
+        self.j7_data["bg"] = "#5fb878"
+        ft = tkFont.Font(family='Times',size=12)
+        self.j7_data["font"] = ft
+        self.j7_data["fg"] = "#333333"
+        self.j7_data["justify"] = "center"
+        self.j7_data["text"] = ""
+        self.j7_data.place(x=100,y=630,width=70,height=25)
+
+        GLabel_702=tk.Label(root)
+        GLabel_702["bg"] = "#1e9fff"
+        ft = tkFont.Font(family='Times',size=12)
+        GLabel_702["font"] = ft
+        GLabel_702["fg"] = "#333333"
+        GLabel_702["justify"] = "center"
+        GLabel_702["text"] = "جلسه هشتم"
+        GLabel_702.place(x=210,y=630,width=70,height=25)
+
+        self.j8_data=tk.Label(root)
+        self.j8_data["bg"] = "#5fb878"
+        ft = tkFont.Font(family='Times',size=12)
+        self.j8_data["font"] = ft
+        self.j8_data["fg"] = "#333333"
+        self.j8_data["justify"] = "center"
+        self.j8_data["text"] = ""
+        self.j8_data.place(x=280,y=630,width=70,height=25)
+
+
+
         self.btn=tk.Button(root)
         self.btn["activeforeground"] = "#ffffff"
         self.btn["bg"] = "#899f9d"
-        ft = tkFont.Font(family='Times',size=10)
+        ft = tkFont.Font(family='Times',size=12)
         self.btn["font"] = ft
         self.btn["fg"] = "#000000"
         self.btn["justify"] = "center"
         self.btn["text"] = "شروع"
         self.btn["relief"] = "raised"
-        self.btn.place(x=140,y=660,width=97,height=39)
+        self.btn.place(x=140,y=670,width=97,height=39)
         self.btn["command"] = self.GButton_288_command
 
     def GButton_288_command(self):
@@ -306,6 +344,14 @@ class App:
             self.j5_data["text"] = ""
         try:
             self.j6_data["text"] = data["client"][self.number]["a6"]
+        except:
+            self.j6_data["text"] = ""
+        try:
+            self.j5_data["text"] = data["client"][self.number]["a7"]
+        except:
+            self.j5_data["text"] = ""
+        try:
+            self.j6_data["text"] = data["client"][self.number]["a8"]
         except:
             self.j6_data["text"] = ""
         self.number+=1
